@@ -75,3 +75,28 @@ World!
 ### Includes
 __include partial.html__  
 {{ include partial }}
+
+## Options
+```php
+// Set cache path
+Mask::$templateCachePath = './path/to/cache';
+
+// Set templates path
+Mask::$templatePath = './path/to/templates';
+
+// Choose which properties to publish by overriding getTemplateData()
+class MyView
+{
+    use Mask;
+    
+    protected $property1;
+    protected $property2;
+    
+    public function getTemplateData()
+    {
+        $data = get_object_vars($this);
+        unset($data['property1']);
+        return $data;
+    }
+}
+```
