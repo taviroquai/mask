@@ -56,11 +56,8 @@ trait Mask
      */
     public function getTemplateData()
     {
-        $data = get_object_vars($this);
-        unset($data['template']);
-        unset($data['patterns']);
-        unset($data['data']);
-        return $data;
+        $remove = array('_template', '_patterns', '_data');
+        return array_diff_key(get_object_vars($this), array_flip($remove));
     }
 
     /**

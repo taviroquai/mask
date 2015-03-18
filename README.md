@@ -94,9 +94,8 @@ class MyView
     
     public function getTemplateData()
     {
-        $data = get_object_vars($this);
-        unset($data['property1']);
-        return $data;
+        $remove = array('property1');
+        return array_diff_key(get_object_vars($this), array_flip($remove));
     }
 }
 ```
