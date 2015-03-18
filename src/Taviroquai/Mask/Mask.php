@@ -43,9 +43,10 @@ trait Mask
     private $_template = '';
     private $_data = array();
     private $_patterns = array(
-        'for'   => '/\{\{\sfor\s([a-z0-9_]+)\sas\s([a-z0-9_]+)\s\}\}(.*?)\{\{\sendfor\s\}\}/isU',
-        'if'    => '/\{\{\sif\s([a-z_]+)\s\}\}(.*?)\{\{\sendif\s\}\}/isU',
-        'var'   => '/\{\{\s([a-z0-9_]+?|[a-z0-9_]+?\.[a-z0-9_]+?)\s\}\}/isU'
+        'for'       => '/\{\{\sfor\s([a-z0-9_]+)\sas\s([a-z0-9_]+)\s\}\}(.*?)\{\{\sendfor\s\}\}/isU',
+        'if'        => '/\{\{\sif\s([a-z_]+)\s\}\}(.*?)\{\{\sendif\s\}\}/isU',
+        'var'       => '/\{\{\s([a-z0-9_]+?|[a-z0-9_]+?\.[a-z0-9_]+?)\s\}\}/isU',
+        'include'   => '/\{\{\sinclude\s([a-z0-9_]+)\s\}\}/isU',
     );
     
     /**
@@ -121,8 +122,11 @@ trait Mask
     {
         return (string) $this->_compileVar(
             $this->_compileIf(
-                $this->_compileFor($subject, $data),
-                $data
+                $this->_compileFor(
+                    $this->_compileInclude(
+                        $subject, $data
+                    ), $data
+                ), $data
             ), $data
         );
     }
@@ -164,6 +168,26 @@ trait Mask
                     . ') : ?>'
                     . $this->_compileRecursive($match[2], $data)
                     . '<?php endif; ?>';
+            },
+            $subject
+        );
+    }
+    
+    /**
+     * Compiles all Include matches
+     * 
+     * @param string $subject The string to match against
+     * @param array  $data    The local context variable names
+     * 
+     * @return string The compiled string
+     */
+    private function _compileInclude($subject, $data = array())
+    {
+        return preg_replace_callback(
+            $this->_patterns['include'],
+            function ($match) use ($data) {
+                $include = file_get_contents($this->_resolvePath($match[1]));
+                return $this->_compileRecursive($include, $data);
             },
             $subject
         );

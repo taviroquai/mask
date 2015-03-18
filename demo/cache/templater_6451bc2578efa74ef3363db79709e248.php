@@ -8,8 +8,9 @@
     <body>
         
         <h1><?=$title?></h1>
-        <?php if (!empty($this->hasDescription())) : ?>
-            <?=$this->getDescription()?>
+        
+        <?php if (!empty($this->hasLogic())) : ?>
+            <?=$this->getSubView()?>
         <?php endif; ?>
         
         <ul>
@@ -17,5 +18,8 @@
         <li><?=$item?></li>
         <?php } ?>
         </ul>
+        
+        <p>Description: <?=$description?></p>
+        
     </body>
 </html>

@@ -8,8 +8,9 @@
     <body>
         
         <h1>{{ title }}</h1>
-        {{ if hasDescription }}
-            {{ getDescription }}
+        
+        {{ if hasLogic }}
+            {{ getSubView }}
         {{ endif }}
         
         <ul>
@@ -17,5 +18,8 @@
         <li>{{ item }}</li>
         {{ endfor }}
         </ul>
+        
+        {{ include partial }}
+        
     </body>
 </html>

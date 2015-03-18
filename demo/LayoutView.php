@@ -27,6 +27,13 @@ class LayoutView
     protected $title = 'titulo';
     
     /**
+     * Set a description
+     * 
+     * @var string The description
+     */
+    protected $description = 'description';
+    
+    /**
      * Set a list of items
      * 
      * @var array The list of items
@@ -38,7 +45,7 @@ class LayoutView
      * 
      * @return boolean The test description logic
      */
-    public function hasDescription()
+    public function hasLogic()
     {
         return true;
     }
@@ -48,7 +55,7 @@ class LayoutView
      * 
      * @return string The partial view
      */
-    public function getDescription()
+    public function getSubView()
     {
         $view = new PartialView();
         return $view->mask('partial');
