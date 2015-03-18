@@ -1,0 +1,20 @@
+{
+    "name": "taviroquai/mask",
+    "description": "A PHP trait as a basic template engine",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marco Afonso",
+            "email": "mafonso333@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Taviroquai\\Mask\\": "src/Taviroquai/Mask/"
+        }
+    }
+}
