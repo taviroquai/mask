@@ -99,7 +99,7 @@ trait Mask
     {
         $cache = self::$templateCachePath
                 . DIRECTORY_SEPARATOR
-                . 'templater_'
+                . 'mask_'
                 . md5(file_get_contents($filename)) . '.php';
         if (!file_exists($cache)) {
             file_put_contents($cache, $template);
