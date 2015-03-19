@@ -10,7 +10,7 @@
         <h1><?=$title?></h1>
         
         <?php if (!empty($this->hasLogic())) : ?>
-            <?=$this->getSubView()?>
+            <p>Description: <?=$description?></p>
         <?php endif; ?>
         
         <ul>
@@ -18,8 +18,6 @@
         <li><?=$item?></li>
         <?php } ?>
         </ul>
-        
-        <p>Description: <?=$description?></p>
         
     </body>
 </html>

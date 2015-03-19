@@ -1,11 +1,6 @@
 <?php
 
 /**
- * Require another view
- */
-require_once 'PartialView.php';
-
-/**
  * Use Mask trait
  */
 use Taviroquai\Mask\Mask;
@@ -48,16 +43,5 @@ class LayoutView
     public function hasLogic()
     {
         return true;
-    }
-    
-    /**
-     * Include another view
-     * 
-     * @return string The partial view
-     */
-    public function getSubView()
-    {
-        $view = new PartialView();
-        return $view->mask('partial');
     }
 }

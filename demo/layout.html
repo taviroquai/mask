@@ -10,7 +10,7 @@
         <h1>{{ title }}</h1>
         
         {{ if hasLogic }}
-            {{ getSubView }}
+            {{ include partial }}
         {{ endif }}
         
         <ul>
@@ -18,8 +18,6 @@
         <li>{{ item }}</li>
         {{ endfor }}
         </ul>
-        
-        {{ include partial }}
         
     </body>
 </html>
