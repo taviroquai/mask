@@ -84,7 +84,7 @@ Mask::$templateCachePath = './path/to/cache';
 // Set templates path
 Mask::$templatePath = './path/to/templates';
 
-// Choose which properties to publish by overriding getTemplateData()
+// Choose what properties to publish by overriding getMaskData()
 class MyView
 {
     use Mask;
@@ -92,10 +92,11 @@ class MyView
     protected $property1;
     protected $property2;
     
-    public function getTemplateData()
+    public function getMaskData()
     {
-        $remove = array('property1');
-        return array_diff_key(get_object_vars($this), array_flip($remove));
+        return array(
+            'property2' => 'override'
+        );
     }
 }
 ```

@@ -54,7 +54,7 @@ trait Mask
      * 
      * @return array
      */
-    public function getTemplateData()
+    public function getMaskData()
     {
         $remove = array('_template', '_patterns', '_data');
         return array_diff_key(get_object_vars($this), array_flip($remove));
@@ -70,7 +70,7 @@ trait Mask
     public function mask($filename)
     {
         // Load default data or data parameter
-        $this->data = (array) $this->getTemplateData();
+        $this->data = (array) $this->getMaskData();
         
         // Compile and return cache file
         $this->_clearCache();
